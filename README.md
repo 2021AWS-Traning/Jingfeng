@@ -1,1 +1,4 @@
-### First training for Docker
+# First training for Docker
+
+## How to run
+- `docker-compose up`
