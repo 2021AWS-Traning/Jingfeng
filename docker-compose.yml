@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+    web:
+        container_name: web
+        build: 
+            context: ./app
+            dockerfile: Dockerfile.ui
+        ports:
+            - "8081:8081"
+        depends_on:
+            - my_services
+    my_services:
+        container_name: my_service
+        build: .
+        volumes:
+            - .:/app
+        ports:
+            - "2525:2525"
+            - "5858:5858"
+        environment:
+            - dev=1
+            - db_service_name=my_service_db
+            - db_name=example_db
+        depends_on:
+            - my_service_db
+    my_service_db:
+        container_name: my_service_db
+        image: mongo
+        volumes:
+            - ./db:/data/db
+        ports:
+            - "27017:27017"

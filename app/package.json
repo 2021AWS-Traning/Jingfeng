@@ -1,0 +1,19 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "use for docker training",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack && node start.js"
+  },
+  "author": "jingfeng",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "live-server": "^1.2.1",
+    "webpack": "^5.35.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.6.0"
+  }
+}
