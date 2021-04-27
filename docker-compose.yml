@@ -1,28 +1,44 @@
 version: "3.8"
 services:
+    proxy:
+        restart: always
+        container_name: proxy
+        image: nginx
+        volumes:
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        ports:
+            - 80:80
+        networks:
+            - frontend
+        depends_on:
+            - web
     web:
         container_name: web
         build: 
             context: ./app
             dockerfile: Dockerfile.ui
         ports:
-            - "8081:8081"
+            - 8081:8081
+        networks:
+            - frontend
         depends_on:
-            - my_services
-    my_services:
+            - my_service
+    my_service:
         container_name: my_service
         build: .
         volumes:
             - .:/app
         ports:
             - "2525:2525"
-            - "5858:5858"
         environment:
             - dev=1
             - db_service_name=my_service_db
             - db_name=example_db
         depends_on:
             - my_service_db
+        networks:
+            - frontend
+            - backend
     my_service_db:
         container_name: my_service_db
         image: mongo
@@ -30,3 +46,10 @@ services:
             - ./db:/data/db
         ports:
             - "27017:27017"
+        networks:
+            - backend
+networks:
+    frontend:
+        driver: bridge
+    backend:
+        driver: bridge

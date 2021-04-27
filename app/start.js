@@ -1,6 +1,6 @@
-const liveServer = require("live-server");
+const liverServer = require("live-server");
 
-liveServer.start({
-    file: 'index.html',
-    port: 8081
+liverServer.start({
+    port: 8081,
+    file: "index.html"
 });

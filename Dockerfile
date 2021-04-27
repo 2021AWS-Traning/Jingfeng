@@ -11,6 +11,5 @@ RUN npm install -g nodemon
 COPY . /app
 
 EXPOSE 2525
-EXPOSE 5858
 
 CMD [ "npm", "run", "dev" ]

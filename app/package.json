@@ -4,7 +4,7 @@
   "description": "use for docker training",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node start.js"
+    "build": "webpack && node start.js"
   },
   "author": "jingfeng",
   "license": "ISC",
